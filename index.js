@@ -3,12 +3,7 @@ function enableErrorToJSON() {
     Object.defineProperty(Error.prototype, 'toJSON', { // eslint-disable-line object-shorthand,no-extend-native
       value: function getValue() {
         const alt = {};
-        if (this.stack) {
-          alt.stack = this.stack.split('\n');
-        }
-
         Object.getOwnPropertyNames(this).forEach(function assignKey(key) {
-          if (key === 'stack') { return; }
           alt[key] = this[key];
         }, this);
 
@@ -57,7 +52,7 @@ function flatten(...statements) {
   for (let i = 0; i < statements.length; i++) {
     lines[i] = statements[i];
   }
-  return stringify(lines);
+  return stringify(lines, 2);
 }
 
 function overrideConsole() {
