@@ -53,21 +53,21 @@ function stringify(obj, indent, ref, methods) {
 
 function overrideConsole() {
   function flatten(...statements) {
-    const line = {};
+    const lines = [];
     for (let i = 0; i < statements.length; i++) {
-      line[i] = statements[i];
+      lines[i] = stringify(statements[i], 2);
     }
-    return line;
+    return lines;
   }
 
   function consoleLog(...statements) {
     const line = flatten(statements);
-    process.stdout.write(`${stringify(line, 2)}\n`);
+    process.stdout.write(`${line}\n`);
   }
 
   function consoleErr(...statements) {
     const line = flatten(statements);
-    process.stderr.write(`${stringify(line, 2)}\n`);
+    process.stderr.write(`${line}\n`);
   }
 
   console.log = consoleLog;
