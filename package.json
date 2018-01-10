@@ -1,6 +1,6 @@
 {
   "name": "jsonify-console",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Overrides console.log and console.error so that a single JSON string is written to stdout or stderr, respectively. Handles Error objects and circular references.",
   "main": "index.js",
   "scripts": {

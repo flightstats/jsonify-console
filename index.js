@@ -42,6 +42,7 @@ function circular(_ref, methods) {
       if (typeof ref === 'function') return ref(val);
       return ref;
     }
+
     seen.push(val);
     return val;
   };
@@ -51,22 +52,22 @@ function stringify(obj, indent, ref, methods) {
   return JSON.stringify(obj, circular(ref, methods), indent);
 }
 
-function overrideConsole() {
-  function flatten(...statements) {
-    const lines = [];
-    for (let i = 0; i < statements.length; i++) {
-      lines[i] = stringify(statements[i], 2);
-    }
-    return lines;
+function flatten(...statements) {
+  const lines = {};
+  for (let i = 0; i < statements.length; i++) {
+    lines[i] = statements[i];
   }
+  return stringify(lines);
+}
 
+function overrideConsole() {
   function consoleLog(...statements) {
-    const line = flatten(statements);
+    const line = flatten(...statements);
     process.stdout.write(`${line}\n`);
   }
 
   function consoleErr(...statements) {
-    const line = flatten(statements);
+    const line = flatten(...statements);
     process.stderr.write(`${line}\n`);
   }
 
