@@ -52,7 +52,7 @@ function flatten(...statements) {
   for (let i = 0; i < statements.length; i++) {
     lines[i] = statements[i];
   }
-  return stringify(lines, 2);
+  return stringify(lines);
 }
 
 function overrideConsole() {
