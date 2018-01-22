@@ -30,6 +30,9 @@ function circular(_ref, methods) {
     if (typeof given === 'function' && methods) {
       val = given.toString();
     }
+
+    val = typeof given === 'undefined' ? 'undefined' : val;
+
     if (!val || typeof (val) !== 'object') {
       return val;
     }
